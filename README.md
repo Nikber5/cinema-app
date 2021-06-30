@@ -1,6 +1,7 @@
-# Cinema application (in progress)
-A quite simple REST application that represents the work of the cinema.
-![pic](Cinema_Uml.png)
+# Cinema application
+A quite simple REST application that represents the work of the cinema, where user can buy tickets for a specific movie session (definite movie in definite cinema hall). To buy tickets user firstly adds them to the shopping cart and then completes an order. There are authentication and authorization. User can have different roles: USER, ADMIN, or no role. 
+
+![pic](Cinema-app.png)
 
 A person without role can:
 -
@@ -13,7 +14,7 @@ A user can:
 -
 - add the ticket for movie to the shopping cart
 - view all the tickets in the shopping cart
-- process the order
+- complete the order
 - view a history of all the orders
 
 
