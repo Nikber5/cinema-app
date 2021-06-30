@@ -4,6 +4,7 @@ import cinema.dao.AbstractDao;
 import cinema.dao.MovieSessionDao;
 import cinema.exception.DataProcessingException;
 import cinema.model.MovieSession;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 import org.hibernate.Session;
@@ -22,9 +23,10 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
         try (Session session = factory.openSession()) {
             Query<MovieSession> getAvailableSessions = session.createQuery(
                     "FROM MovieSession WHERE id = :id "
-                            + "AND DATE_FORMAT(showTime, '%Y-%m-%d') = :date", MovieSession.class);
+                            + "AND DATE(showTime) = :date", MovieSession.class);
             getAvailableSessions.setParameter("id", movieId);
-            getAvailableSessions.setParameter("date", date.toString());
+            Date sqlDate = Date.valueOf(date);
+            getAvailableSessions.setParameter("date", sqlDate);
             return getAvailableSessions.getResultList();
         } catch (Exception e) {
             throw new DataProcessingException("Session for movie with id "
